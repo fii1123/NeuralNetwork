@@ -27,51 +27,43 @@
 //Структура нейрона
 struct Neiro
 {
-    NN_TYPE_D data;//Данные
-    NN_TYPE_D *weight;//Массив веса связи с прочими нейронами
+    NN_TYPE_D data;           //Данные
+    NN_TYPE_D *weight;        //Массив веса связи с прочими нейронами
     //Для обучения
     NN_TYPE_D delta;
-    NN_TYPE_D *last_weight;//Массив предыдущей эпохи
+    NN_TYPE_D *last_weight;   //Массив предыдущей эпохи
 };
 //Структура слоя
 struct Layer
 {
-    NN_TYPE_C count;//Число нейронов на слое
-    NN_TYPE_D *bias;//Массив веса нейрона смещения (NULL, если отсутствует)
-    struct Neiro *N;//Массив нейронов
+    NN_TYPE_C count;    //Число нейронов на слое
+    NN_TYPE_D *bias;    //Массив веса нейрона смещения (NULL, если отсутствует)
+    struct Neiro *N;    //Массив нейронов
 };
 //Нейросеть
 typedef struct
 {
-    struct Layer *Layers_NN;//Массив слоёв
-    NN_TYPE_C Layers_count;//Число слоёв в нейросети
-    NN_TYPE_C Input_count;//Число входных нейронов
-    NN_TYPE_C Output_count;//Число выходных нейронов
+    struct Layer *Layers_NN;    //Массив слоёв
+    NN_TYPE_C Layers_count;     //Число слоёв в нейросети
+    NN_TYPE_C Input_count;      //Число входных нейронов
+    NN_TYPE_C Output_count;     //Число выходных нейронов
 
     //Гиперпараметры
-    NN_TYPE_D Epsilon;// Скорость обучения
-    NN_TYPE_D Alpha;// Момент
+    NN_TYPE_D Epsilon;          // Скорость обучения
+    NN_TYPE_D Alpha;            // Момент
 } Neiro_Net;
 
 
 Neiro_Net* NN_Create(NN_TYPE_C *Layers, NN_TYPE_C LayersCount, int *Biases);
 
 //Инициализация нейросети из файла
-//Neiro_Net NN_Create(char *file_path);
-
 Neiro_Net* NN_Load(char *file_path);
-
-//Удаление нейросети
-void NN_Delete(Neiro_Net *N_N);
 
 //Сохранение нейросети
 void NN_Save(Neiro_Net *N_N, char* file_path);
 
 //Отчистка нейросети (данных, но не веса)
 void NN_Clear(Neiro_Net *N_N);
-
-//функция активации (сигноид)
-NN_TYPE_D sigmoid(NN_TYPE_D a);
 
 //Функция вычисления
 void Result(Neiro_Net *N_N, NN_TYPE_D *input, NN_TYPE_D *output, NN_TYPE_D activ(NN_TYPE_D x));
@@ -85,5 +77,8 @@ void NN_SetGlobalParam(Neiro_Net *N_N, NN_TYPE_D Alpha, NN_TYPE_D Epsilon);
 //Обучение
 void NN_Backpropagation (Neiro_Net *N_N, NN_TYPE_D *input, NN_TYPE_D *output,
                           NN_TYPE_D activ(NN_TYPE_D x));
+//Удаление нейросети
+void NN_Delete(Neiro_Net *N_N);
+
 
 #endif // FIA_NEURALNETWORK_H
