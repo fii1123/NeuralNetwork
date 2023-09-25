@@ -1,4 +1,5 @@
 #include "FIA_NeuralNetwork.h"
+#include <math.h> // Нужно для сигмоида
 
 #define NN_UINT
 
