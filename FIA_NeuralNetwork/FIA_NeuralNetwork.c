@@ -1,5 +1,4 @@
 #include "FIA_NeuralNetwork.h"
-//Функции нейросети
 
 Neiro_Net* NN_Create(NN_TYPE_C *Layers, NN_TYPE_C LayersCount, int *Biases)
 {
@@ -33,8 +32,6 @@ Neiro_Net* NN_Create(NN_TYPE_C *Layers, NN_TYPE_C LayersCount, int *Biases)
     do {
         //Считывание числа нейронов на слое
         N_N->Layers_NN[i].count = Layers[i];
-
-        // подумать
 
         //Если есть нейрон смещения
         if(Biases != NULL && Biases[i] != 0) {
@@ -219,7 +216,7 @@ Neiro_Net* NN_Load(char *file_path)
 //Удаление нейросети
 void NN_Delete(Neiro_Net *N_N)
 {
-    free(N_N->Layers_NN); //Странно, но эта штука очищает всё без ошибок
+    free(N_N->Layers_NN);
 }
 
 //Сохранение нейросети
@@ -399,5 +396,3 @@ void NN_Backpropagation (Neiro_Net *N_N, NN_TYPE_D *input, NN_TYPE_D *output,
     NN_Clear(N_N);  //Очищаем нейросеть
     free(NN_output);
 }
-
-//Конец библиотеки нейросети
