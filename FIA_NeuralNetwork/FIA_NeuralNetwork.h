@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Начало библиотеки нейросети
-#include <math.h> // Нужно для сигмоида
 #include <time.h> // Нужно для рандома
 
 //Типы данных для нейросети
